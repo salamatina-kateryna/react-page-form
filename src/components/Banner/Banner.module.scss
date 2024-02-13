@@ -1,0 +1,54 @@
+@import "../../assets/styles/variables.scss";
+@import "../../assets/styles/mixins.scss";
+
+.container {
+  background-image: url("../../assets/img/background.jpeg");
+  background-size: 350% 165%;
+  background-position: 50% 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  background-blend-mode: color;
+  padding: 40px 16px 71px;
+  color: $white;
+
+  @media (min-width: $tablet) {
+    padding: 89px 32px 88px;
+  }
+
+  @media (min-width: $desktop) {
+    padding: 164px 60px 163px;
+  }
+
+  @media (min-width: $centered) {
+    background-size: 205% 265%;
+    background-position: 50% 80%;
+  }
+}
+
+.title {
+  width: 328px;
+  margin: 0 auto 21px;
+  font-size: 40px;
+  line-height: 40px;
+  text-align: center;
+
+  @media (min-width: $tablet) {
+    width: 380px;
+  }
+}
+
+.text {
+  width: 328px;
+  margin: 0 auto 32px;
+  font-size: 16px;
+  line-height: 26px;
+  text-align: center;
+
+  @media (min-width: $tablet) {
+    width: 380px;
+  }
+}
+
+.link {
+  @include button;
+  margin: 0 auto;
+}
