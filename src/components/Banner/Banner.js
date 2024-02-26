@@ -1,5 +1,6 @@
-import banner from "./Banner.module.scss";
 import Container from "react-bootstrap/Container";
+
+import banner from "./Banner.module.scss";
 
 const Banner = () => (
   <section className={banner.banner}>

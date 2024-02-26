@@ -1,23 +1,5 @@
 // Import Bootstrap functions and variables
-@import "node_modules/bootstrap/scss/functions";
-@import "node_modules/bootstrap/scss/variables";
-
-// Define your custom breakpoints
-$grid-breakpoints: (
-  xs: 0,
-  sm: 360px,
-  md: 768px,
-  lg: 1024px,
-  xl: 1170px,
-);
-
-// Optionally, customize the container max-widths for new breakpoints
-$container-max-widths: (
-  sm: 328px,
-  md: 704px,
-  lg: 904px,
-  xl: 1170px,
-);
-
-// Import the rest of Bootstrap
-@import "node_modules/bootstrap/scss/bootstrap";
+@import "variables";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/bootstrap";
