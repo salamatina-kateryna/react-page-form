@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Container, Row } from "react-bootstrap";
 
 import getData from "../../api/api";
@@ -8,27 +8,32 @@ import list from "./List.module.scss";
 
 const List = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalUsers, setTotalUsers] = useState(0);
   const [data, setData] = useState([]);
 
   useEffect(() => {
     const fetchDataFromApi = async () => {
-      const data = await getData();
-      setData(data?.users);
+      const info = await getData();
+      setData(info?.users);
+      setTotalUsers(info?.total_users);
     };
     fetchDataFromApi();
   }, []);
 
-  const loadMore = async () => {
+  const loadMore = useCallback(async () => {
     const nextPage = currentPage + 1;
     setCurrentPage(nextPage);
 
     const nextPageData = await getData(nextPage);
-    console.log(nextPageData);
 
     setData((data) => {
       return [...data, ...nextPageData?.users];
     });
-  };
+
+    setTotalUsers(nextPageData.total_users);
+  }, [currentPage]);
+
+  console.log(data, totalUsers);
 
   return (
     <section className={list.list}>
@@ -39,7 +44,11 @@ const List = () => {
             return <Card {...user} key={user.id} />;
           })}
         </Row>
-        <button className={list.button} onClick={loadMore}>
+        <button
+          className={list.button}
+          onClick={loadMore}
+          style={{ display: data.length >= totalUsers ? "none" : "block" }}
+        >
           Show more
         </button>
       </Container>
